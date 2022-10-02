@@ -17,6 +17,9 @@
             color: #B7CADB;
             font-family: 'Ubuntu', monospace;
         }
+        .btn-bulat{
+            border-radius: 40px !important;
+        }
         /* a.kun:hover{color: #557B83;} */
         a.kun:hover{color: #F8B400;}
         .btn-polos:hover{color: #557B83;}
@@ -53,13 +56,17 @@
                 </div>
             </div>
             <div class="list-group pe-0 list-group-flush" style="height: 100vh;" >
-                <button  class="list-group-item text-start kun btn-polos font pt-3 pb-2" onclick="listbuku()"><i class="fa-solid fa-book"></i> &nbsp;List Buku <small class="text-sm ms-5"><i class="fa-solid fa-chevron-down"></i></small></button>
+                <button  class="list-group-item text-start kun btn-polos font pt-3 pb-2" onclick="proses()"><i class="fa-solid fa-book"></i> &nbsp;Kelola Proses <small class="text-sm ms-3"><i class="fa-solid fa-chevron-down"></i></small></button>
                 <div class="ms-3" id="listbuku" style="display: none;">
-                    <a  class="list-group-item text-start kun btn-polos font" href="table_buku.php"><i class="fa-solid fa-table-list"></i> &nbsp;List table buku</a>
-                    <a  class="list-group-item text-start kun btn-polos font" href="card_buku.php"><i class="fa-solid fa-grip"></i> &nbsp;List card buku</a>
+                    <a  class="list-group-item text-start kun btn-polos font" href="peminjaman.php"><i class="fa-solid fa-table-list"></i> &nbsp;Peminjaman</a>
+                    <a  class="list-group-item text-start kun btn-polos font" href="pengembalian.php"><i class="fa-solid fa-grip"></i> &nbsp;Pengembalian</a>
                 </div>
-                <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="history.php"><i class="fa-solid fa-bookmark"></i> &nbsp;Rak Peminjaman</a>
-                <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="history.php"><i class="fa-solid fa-clock-rotate-left"></i> &nbsp;History Pinjam</a>
+                <button  class="list-group-item text-start kun btn-polos font pt-3 pb-2" onclick="kelola()"><i class="fa-solid fa-book"></i> &nbsp;Kelola<small class="text-sm ms-5"><i class="fa-solid fa-chevron-down"></i></small></button>
+                <div class="ms-3" id="kelola" style="display: none;">
+                    <a  class="list-group-item text-start kun btn-polos font" href="siswa"><i class="fa-solid fa-table-list"></i> &nbsp;Siswa</a>
+                    <a  class="list-group-item text-start kun btn-polos font" href="#"><i class="fa-solid fa-grip"></i> &nbsp;Peminjaman</a>
+                    <a  class="list-group-item text-start kun btn-polos font" href="#"><i class="fa-solid fa-grip"></i> &nbsp;Buku</a>
+                </div>
             </div>
         </div>
 
@@ -187,11 +194,18 @@
             document.getElementById('menu').style.display='block'
             document.getElementById('navb').style.display='block'
         }
-        function listbuku(){
+        function proses(){
             if(document.getElementById('listbuku').style.display=='block'){
                 document.getElementById('listbuku').style.display='none'
             }else if(document.getElementById('listbuku').style.display=='none'){
                 document.getElementById('listbuku').style.display='block'
+            }
+        }
+        function kelola(){
+            if(document.getElementById('kelola').style.display=='block'){
+                document.getElementById('kelola').style.display='none'
+            }else if(document.getElementById('kelola').style.display=='none'){
+                document.getElementById('kelola').style.display='block'
             }
         }
         function hide(){
