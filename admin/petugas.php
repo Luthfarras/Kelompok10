@@ -53,7 +53,7 @@ if (isset($_POST['tambah'])) {
                         </div>
                         <div class="form-floating mb-2">
                             <select class="form-control text-start" name="kelamin">
-                                <option disabled selected>Pilih kelamin anda</option>
+                                <option disabled selected>Pilih jenis kelamin anda</option>
                                 <option value="L">Laki-Laki</option>
                                 <option value="P">Perempuan</option>
                             </select>

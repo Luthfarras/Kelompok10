@@ -29,7 +29,7 @@ if (!$_SESSION['nip']) {
                 <a class="nav-link" href="data_bk.php">Data Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="data_sw.php">Data Siswa</a>
               </li>
               <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +57,13 @@ if (!$_SESSION['nip']) {
     </div>
 
     <div class="container mt-5">
-      <a href="create_bk.php" class="btn btn-outline-primary">Tambah Data</a>
+      <div class="d-flex">
+        <a href="create_bk.php" class="btn btn-outline-primary me-auto">Tambah Data</a>
+        <form class="d-flex col-6 ms-auto" action="search_bk.php" method="get">
+            <input class="form-control me-2" type="text" placeholder="Cari Buku" name="search">
+            <input type="submit" value="Cari" class="btn btn-outline-success">
+        </form>
+      </div>
       <table class="table table-bordered table-hover mt-3">
         <thead>
           <tr>

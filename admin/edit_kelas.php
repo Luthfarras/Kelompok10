@@ -8,7 +8,7 @@ if(isset($_POST['update'])){
     $update = update("petugas", "nip='$nip', nama='$nama', jenis_kelamin='$kelamin', alamat='$alamat', password='$password', level='$level' WHERE nip='$nip'");
 
     if($update){
-        header("Location:petugas.php");
+        header("Location:kelas.php");
     }
 }
 ?>

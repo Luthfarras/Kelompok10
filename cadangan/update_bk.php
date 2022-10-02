@@ -18,7 +18,7 @@ while($data = mysqli_fetch_array($ambil)){
    <head>
      <meta charset="utf-8">
      <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-     <title>Tambah Data</title>
+     <title>Edit Data Buku</title>
    </head>
    <body>
      <div class="">
@@ -34,7 +34,7 @@ while($data = mysqli_fetch_array($ambil)){
                  <a class="nav-link" href="data_bk.php">Data Buku</a>
                </li>
                <li class="nav-item">
-                 <a class="nav-link" href="#">Link</a>
+                 <a class="nav-link" href="data_sw.php">Data Siswa</a>
                </li>
                <!-- <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

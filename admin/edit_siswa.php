@@ -101,21 +101,24 @@ if(isset($_POST['update'])){
                                 <label>Nama</label>
                             </div>
                             <div class="form-floating mb-2">
-                                <select class="form-control text-start" name="kelamin" id="kelamin" oninput="document.getElementById('tkelamin').innerHTML =  document.getElementById('kelamin').value" placeholder="kelamin">
-                                    <option disabled selected><?=$editsiswa['jenis_kelamin']?></option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
+                                <select class="form-control text-start" name="kelamin">
+                                    <?php
+                                    echo "<option value=$editsiswa[jenis_kelamin]>$editsiswa[jenis_kelamin]</option>";
+                                    ?>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
                                 </select>
-                                <label>Kelamin</label>
+                                <label>Jenis Kelamin</label>
                             </div>
+
                             <div class="form-floating mb-2">
                                 <input type="text" class="form-control" name="alamat" id="alamat" oninput="document.getElementById('talamat').innerHTML =  document.getElementById('alamat').value" placeholder="alamat" value="<?=$editsiswa['alamat']?>">
                                 <label>Alamat</label>
                             </div>
                             <div class="form-floating mb-2">
-                                    <select class="form-control text-start" name="kelas" id="kelas" oninput="document.getElementById('tkelas').innerHTML =  document.getElementById('kelas').value" placeholder="kelas">
-                                        <option disabled selected><?=$editsiswa['nama_kelas']?></option>
+                                    <select class="form-control text-start" name="kelas">
                                         <?php
+                                        echo "<option value=$editsiswa[nama_kelas]>$editsiswa[nama_kelas]</option>";
                                         $result = read('nama_kelas', 'kelas', "");
                                         while ($kelas = mysqli_fetch_assoc($result)) {
                                         ?>

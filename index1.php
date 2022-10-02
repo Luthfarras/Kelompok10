@@ -2,7 +2,7 @@
 include 'config.php';
 session_start();
 if(isset($_SESSION['nip'])){
-    header('location:home.php');
+    header('location:admin/home.php');
 }
 
 
@@ -54,8 +54,9 @@ if(isset($_POST['login'])){
   if ($data) {
     if ($data['password'] == $password) {
       $_SESSION['nip'] = $data['nip'];
+      $_SESSION['nama'] = $data['nama'];
       $_SESSION['level'] = $data['level'];
-        header('location:home.php');
+        header('location:admin/home.php');
     }else {
       echo "<script>alert('Password tidak sesuai.');</script>";
     }

@@ -75,7 +75,7 @@ if(isset($_POST['update'])){
                     </tbody>
                 </table>
                 <div class="row">
-                    <h3 class="text-start font mt-4 mb-3">UPDATE SISWA</h3>
+                    <h3 class="text-start font mt-4 mb-3">UPDATE PETUGAS</h3>
                     <!-- Input prevew -->
                     <div class="col-md-6 col-12">
                     <?php
@@ -93,12 +93,14 @@ if(isset($_POST['update'])){
                                 <label>Nama</label>
                             </div>
                             <div class="form-floating mb-2">
-                                    <select class="form-control text-start" name="kelamin" id="kelamin" oninput="document.getElementById('tkelamin').innerHTML =  document.getElementById('kelamin').value" placeholder="kelamin">
-                                        <option disabled selected><?=$editpetugas['jenis_kelamin']?></option>
+                                <select class="form-control text-start" name="kelamin">
+                                    <?php
+                                    echo "<option value=$editpetugas[jenis_kelamin]>$editpetugas[jenis_kelamin]</option>";
+                                    ?>
                                         <option value="L">Laki-laki</option>
                                         <option value="P">Perempuan</option>
-                                    </select>
-                                <label>Kelas</label>
+                                </select>
+                                <label>Jenis Kelamin</label>
                             </div>
                             <div class="form-floating mb-2">
                                 <input type="text" class="form-control" name="alamat" id="alamat" oninput="document.getElementById('talamat').innerHTML =  document.getElementById('alamat').value" placeholder="alamat" value="<?=$editpetugas['alamat']?>">
@@ -109,12 +111,14 @@ if(isset($_POST['update'])){
                                 <label>Password</label>
                             </div>
                             <div class="form-floating mb-2">
-                                    <select class="form-control text-start" name="level" id="level" oninput="document.getElementById('tlevel').innerHTML =  document.getElementById('level').value" placeholder="level">
-                                        <option disabled selected><?=$editpetugas['level']?></option>
+                                <select class="form-control text-start" name="level">
+                                    <?php
+                                    echo "<option value=$editpetugas[level]>$editpetugas[level]</option>";
+                                    ?>
                                         <option value="admin">Admin</option>
                                         <option value="petugas">Petugas</option>
-                                    </select>
-                                <label>Kelas</label>
+                                </select>
+                                <label>Level</label>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <input class="btn btn-success" type="submit" name="update" value="Submit">

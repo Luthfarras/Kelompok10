@@ -1,3 +1,14 @@
+<?php
+include_once '../config.php';
+session_start();
+if (!$_SESSION['nip']) {
+    header('location:../index1.php');
+    exit;
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&family=Roboto:ital,wght@1,100&family=Signika+Negative:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css">
@@ -53,7 +64,11 @@
             </div>
             <div class="list-group pe-0 list-group-flush" style="height: 100vh;" >
                 <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="buku.php"><i class="fa-solid fa-book"></i> &nbsp;Buku</a>
+                <?php 
+                if ($_SESSION['level'] == "admin") {
+                ?>
                 <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="petugas.php"><i class="fa-solid fa-user"></i> &nbsp;Petugas</a>
+                <?php } ?>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="siswa.php"><i class="fa-solid fa-users"></i> &nbsp;Siswa</a>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="kelas.php"><i class="fa-solid fa-users-rectangle"></i> &nbsp;Kelas</a>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="peminjaman.php"><i class="fa-solid fa-book-bookmark"></i> &nbsp;Peminjaman</a>
@@ -200,6 +215,6 @@
             document.getElementById('menu').style.display='none'
         }
     </script>
-    <script src="../bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 </body>
 </html>

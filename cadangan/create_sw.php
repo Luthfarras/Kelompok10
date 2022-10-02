@@ -13,7 +13,7 @@ if (!$_SESSION['nip']) {
    <head>
      <meta charset="utf-8">
      <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-     <title>Tambah Data</title>
+     <title>Tambah Data Siswa</title>
    </head>
    <body>
      <div class="">
@@ -29,7 +29,7 @@ if (!$_SESSION['nip']) {
                  <a class="nav-link" href="data_bk.php">Data Buku</a>
                </li>
                <li class="nav-item">
-                 <a class="nav-link" href="#">Link</a>
+                 <a class="nav-link" href="data_sw.php">Data Siswa</a>
                </li>
                <!-- <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,41 +58,43 @@ if (!$_SESSION['nip']) {
      <div class="container mt-5 mb-5">
        <div class="card mx-auto" style="width: 50rem">
          <div class="card-header">
-           <h5>Tambah Data Buku</h5>
+           <h5>Tambah Data Siswa</h5>
          </div>
          <div class="card-body">
            <form class="mt-2" action="" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-              <label class="form-label">Judul</label>
-              <input type="text" class="form-control" name="judul">
+              <label class="form-label">NIS</label>
+              <input type="number" class="form-control" name="nis">
             </div>
             <div class="mb-3">
-              <label class="form-label">Penulis</label>
-              <input type="text" class="form-control" name="penulis">
+              <label class="form-label">Nama</label>
+              <input type="text" class="form-control" name="nama">
             </div>
             <div class="mb-3">
-              <label class="form-label">Penerbit</label>
-              <input type="text" class="form-control" name="penerbit">
+              <label class="form-label">Jenis Kelamin</label>
+              <div class="">
+                <input type="radio" name="jenis_kelamin" value="L">
+                <label for="">Laki-Laki</label>
+              </div>
+              <div class="">
+                <input type="radio" name="jenis_kelamin" value="P">
+                <label for="">Perempuan</label>
+              </div>
             </div>
             <div class="mb-3">
-              <label class="form-label">Tahun</label>
-              <input type="number" class="form-control" name="tahun">
+              <label class="form-label">Alamat</label>
+              <input type="text" class="form-control" name="alamat">
             </div>
             <div class="mb-3">
-              <label class="form-label">Kota</label>
-              <input type="text" class="form-control" name="kota">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Cover</label>
-              <input type="file" class="form-control" name="cover">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sinopsis</label>
-              <textarea name="sinopsis" rows="8" cols="80" class="form-control"></textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Stok</label>
-              <input type="number" class="form-control" name="stok">
+                <label class="form-label">Kelas</label>
+                <select class="form-control" name="kelas">
+                  <?php
+                  $sql = mysqli_query($conn, "SELECT * FROM kelas");
+                  while ($data = mysqli_fetch_array($sql)) {
+                   ?>
+                   <option value="<?= $data['id_kelas']?>"><?= $data['nama_kelas']?></option>
+                 <?php } ?>
+                </select>
             </div>
             <button type="submit" class="btn btn-warning" name="submit">Tambah Data</button>
           </form>
@@ -106,22 +108,17 @@ if (!$_SESSION['nip']) {
 
 <?php
 if (isset($_POST['submit'])) {
-  $judul = $_POST['judul'];
-  $penulis = $_POST['penulis'];
-  $penerbit = $_POST['penerbit'];
-  $tahun = $_POST['tahun'];
-  $kota = $_POST['kota'];
-  $file = $_FILES['cover']['name'];
-  $tmp_name = $_FILES['cover']['tmp_name'];
-  $upload = move_uploaded_file($tmp_name, "assets/img/" . $file);
-  $sinopsis = $_POST['sinopsis'];
-  $stok = $_POST['stok'];
+  $nis = $_POST['nis'];
+  $nama = $_POST['nama'];
+  $jenis_kelamin = $_POST['jenis_kelamin'];
+  $alamat = $_POST['alamat'];
+  $kelas = $_POST['kelas'];
 
-  $query = mysqli_query($conn, "INSERT INTO buku (judul, penulis, penerbit, tahun, kota, cover, sinopsis, stok)
-  VALUES ('$judul', '$penulis', '$penerbit', '$tahun', '$kota', '$file', '$sinopsis', '$stok')");
+  $query = mysqli_query($conn, "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas)
+  VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$kelas')");
 
   if ($query) {
-    header('location:data_bk.php');
+    header('location:data_sw.php');
   }
 }
  ?>

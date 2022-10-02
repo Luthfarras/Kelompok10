@@ -28,7 +28,7 @@ if (!$_SESSION['nip']) {
                 <a class="nav-link" href="data_bk.php">Data Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="data_sw.php">Data Siswa</a>
               </li>
               <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,7 +55,46 @@ if (!$_SESSION['nip']) {
       </nav>
     </div>
     <div class="container mt-5">
-      <h2>Halo</h2>
+      <div class="card mx-auto" style="width:50rem">
+        <div class="card-header">
+          Peminjaman
+        </div>
+        <div class="card-body">
+          <div class="">
+            <form class="d-flex" action="" method="get">
+              <input class="form-control me-2" type="text" placeholder="Search" name="search">
+              <input type="submit" value="Cari" class="btn btn-outline-success">
+            </form>
+          </div>
+          <div class="">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Cover</th>
+                  <th>Judul</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $sql = mysqli_query($conn, "SELECT * FROM buku");
+                while ($data=mysqli_fetch_array($sql)) {
+                  ?>
+                <tr>
+                  <td><?=$data['id_buku']?></td>
+                  <td><img src="assets/img/<?= $data['cover']?>" alt="" style="width:100px"></td>
+                  <td><?=$data['judul']?></td>
+                  <td>
+                    <a href="peminjaman.php?id_buku=<?= $data['id_buku']; ?>" class="btn btn-outline-primary" style="border-radius:50px">Pinjam</a>
+                  </td>
+                </tr>
+              </tbody>
+            <?php } ?>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>

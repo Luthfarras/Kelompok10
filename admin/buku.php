@@ -96,7 +96,7 @@ if (isset($_POST['tambah'])) {
                             <th>Tahun</th>
                             <th>Kota</th>
                             <th>Stok</th>
-                            <th>Sinopsis</th>
+                            <!-- <th>Sinopsis</th> -->
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -118,7 +118,7 @@ if (isset($_POST['tambah'])) {
                             <td><?=$data['tahun']?></td>
                             <td><?=$data['kota']?></td>
                             <td><?=$data['stok']?></td>
-                            <td class="text-center">
+                            <!-- <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-polos" data-bs-toggle="modal" data-bs-target="#sinopsis"><small><i class="fa-solid fa-file-lines"></i> Sinopsis</small></button>
                                 <div class="modal fade" id="sinopsis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -135,9 +135,14 @@ if (isset($_POST['tambah'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </td>
+                            </td> -->
                             <td class="text text-center">
                                 <!-- Edit data -->
+                                <button class="btn btn-polos p-1">
+                                    <a class="text-primary" href="detail_buku.php?id_buku=<?= $data['id_buku']; ?>">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    </a>
+                                </button> | 
                                 <button class="btn btn-polos p-1">
                                     <a class="text-warning" href="edit_buku.php?id_buku=<?= $data['id_buku']; ?>">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -145,7 +150,9 @@ if (isset($_POST['tambah'])) {
                                 </button> |
                                 <!-- Hapus data -->
                                 <button class="btn btn-polos p-1">
-                                    <a class="text-danger" href="hapus.php?id_buku=<?= $data['id_buku']; ?>"><i class="fa-solid fa-trash"></i></a>
+                                    <a class="text-danger" href="hapus.php?id_buku=<?= $data['id_buku']; ?>">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                                 </button>
                             </td>
                         </tr>
