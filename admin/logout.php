@@ -1,8 +1,8 @@
 <?php
-include '../config.php';
-session_start();
-session_destroy();
+// include '../config.php';
+// session_start();
+// session_destroy();
 
-header("location:../index1.php");
+// header("location:../index1.php");
 
 ?>

@@ -1,9 +1,9 @@
 <?php
 include '../config.php';
 
-$id = $_SESSION['nis'];
-$ambil = mysqli_query($conn, "SELECT * FROM siswa WHERE nis='$id'");
-while($data = mysqli_fetch_array($ambil)){
+// $id = $_SESSION['nis'];
+// $ambil = mysqli_query($conn, "SELECT * FROM siswa WHERE nis='$id'");
+// while($data = mysqli_fetch_array($ambil)){
 ?>
 
 <!DOCTYPE html>
@@ -55,4 +55,6 @@ while($data = mysqli_fetch_array($ambil)){
 </div>
 </body>
 </html>
-<?php } ?>
+<?php 
+// } 
+?>

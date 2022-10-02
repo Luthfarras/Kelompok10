@@ -1,9 +1,9 @@
 <?php
 include 'config.php';
 session_start();
-if(isset($_SESSION['nis'])){
-    header('location:home.php');
-}
+// if(isset($_SESSION['nis'])){
+//     header('location:home.php');
+// }
 
 
  ?>
@@ -49,7 +49,7 @@ if(isset($_POST['login'])){
   if ($data) {
     if ($data['nis'] == $nis) {
       $_SESSION['nis'] = $data['nis'];
-        header('location:history.php');
+        header('location:siswa/home.php');
     }else {
       echo "<script>alert('NIS tidak sesuai.');</script>";
     }

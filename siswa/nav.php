@@ -1,11 +1,6 @@
 <?php
 include_once '../config.php';
 session_start();
-if (!$_SESSION['nip']) {
-    header('location:../index1.php');
-    exit;
-  }
-
 ?>
 
 
@@ -64,10 +59,10 @@ if (!$_SESSION['nip']) {
             </div>
             <div class="list-group pe-0 list-group-flush" style="height: 100vh;" >
                 <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="history.php"><i class="fa-solid fa-clock-rotate-left"></i></i> &nbsp;History Peminjaman</a>
-                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="list.php"><i class="fa-solid fa-list-timeline"></i> &nbsp;List Buku</a>
-                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="kelas.php"><i class="fa-solid fa-users-rectangle"></i> &nbsp;Kelas</a>
+                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="list.php"><i class="fa-solid fa-list"></i> &nbsp;List Buku</a>
+                <!-- <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="kelas.php"><i class="fa-solid fa-users-rectangle"></i> &nbsp;Kelas</a>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="peminjaman.php"><i class="fa-solid fa-book-bookmark"></i> &nbsp;Peminjaman</a>
-                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="pengembalian.php"><i class="fa-solid fa-person-chalkboard"></i> &nbsp;Pengembalian</a>
+                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="pengembalian.php"><i class="fa-solid fa-person-chalkboard"></i> &nbsp;Pengembalian</a> -->
             </div>
         </div>
 
@@ -116,7 +111,7 @@ if (!$_SESSION['nip']) {
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item" href="logout.php">
+                                    <a class="dropdown-item" href="../logout.php">
                                         <div class="row">
                                             <div class="col-2 text-abu"><i class="fa-solid fa-right-from-bracket"></i></div>
                                             <div class="col-2 ms-1"><small> Logout</small></div>
@@ -173,7 +168,7 @@ if (!$_SESSION['nip']) {
                           </li>
                           <li><hr class="dropdown-divider"></li>
                           <li>
-                            <a class="dropdown-item" href="logout.php">
+                            <a class="dropdown-item" href="../logout.php">
                                 <div class="row">
                                     <div class="col-2 text-abu"><i class="fa-solid fa-right-from-bracket"></i></div>
                                     <div class="col-2 ms-2"><small> Logout</small></div>
