@@ -36,7 +36,7 @@ session_start();
                             $no=0;
                             $id = $_SESSION['nis'];
                             // history tinggal merubah di sql history
-                            $history = read('b.judul, p.tanggal_peminjaman, p.tanggal_pengembalian, s.nama, n.tanggal_kembali, n.denda', 'buku b join peminjaman p ON b.id_buku = p.id_buku join siswa s ON s.nis = p.id_siswa JOIN pengembalian n ON p.id_peminjaman = n.id_peminjaman', "WHERE p.id_siswa='$id'");
+                            $history = read('b.judul, j.tanggal_peminjaman, j.tanggal_pengembalian, s.nama, n.tanggal_kembali, n.denda', 'buku b join detail_peminjaman p ON b.id_buku = p.id_buku JOIN peminjaman j ON p.id_peminjaman=j.id_peminjaman JOIN siswa s ON s.nis = j.id_siswa JOIN pengembalian n ON j.id_peminjaman = n.id_peminjaman', "WHERE j.id_siswa='$id'");
                                     while($data = mysqli_fetch_array($history)){
                                     $no++;
                         ?>
