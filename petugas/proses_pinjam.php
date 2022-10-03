@@ -118,6 +118,7 @@ if (isset($_POST['pinjam'])) {
           $_SESSION['id_peminjaman'] = $cetak['id_peminjaman'];
           $_SESSION['peminjam'] = $cetak['id_siswa'];
           $_SESSION['kuantitas'] = $_POST['kuantitas'];
+          echo "<script> window.location.href = 'detail_pinjam.php' </script>";
       }
 
       // if ($tambahpinjam) {
