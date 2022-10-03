@@ -79,7 +79,7 @@ session_start();
         <div class="col-10 ps-0" id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-warning" style="border-bottom:1px solid #EEEEEE; height: 60px;">
                 <div class="container-fluid">
-                    <a class="navbar-brand font text-light ms-4" id="navb" href="home.php"> Admin</a>
+                    <a class="navbar-brand font text-light ms-4" id="navb" href="home.php"><?=$_SESSION['level']?></a>
                     <!-- Menu logout saat layar mengecil -->
                     <div class="btn-group" id="log" style="display: none;">
                             <button class="btn btn-polos text-light" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
