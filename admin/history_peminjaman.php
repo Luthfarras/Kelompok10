@@ -34,7 +34,9 @@ include '../config.php';
                             $no=0;
                             $id = $_SESSION['nip'];
                             // history tinggal merubah di sql history
-                            $history = read('a.id_peminjaman, c.nama, d.judul, d.cover', 'peminjaman a JOIN detail_peminjaman b ON a.id_peminjaman=b.id_peminjaman JOIN siswa c ON c.nis=a.id_siswa JOIN buku d ON d.id_buku=b.id_buku', "");
+                            $history = read('a.id_peminjaman, c.nama, d.judul, d.cover, e.peminjaman_id', 'peminjaman a  JOIN detail_peminjaman b ON a.id_peminjaman=b.id_peminjaman JOIN siswa c ON c.nis=a.id_siswa JOIN buku d ON d.id_buku=b.id_buku LEFT JOIN pengembalian e ON a.id_peminjaman=e.peminjaman_id', 
+                            "UNION
+                            SELECT a.id_peminjaman, c.nama, d.judul, d.cover, e.peminjaman_id FROM peminjaman a JOIN detail_peminjaman b ON a.id_peminjaman=b.id_peminjaman JOIN siswa c ON c.nis=a.id_siswa JOIN buku d ON d.id_buku=b.id_buku RIGHT JOIN pengembalian e ON a.id_peminjaman=e.peminjaman_id");
                                     while($data = mysqli_fetch_array($history)){
                                     $no++;
 
@@ -52,15 +54,15 @@ include '../config.php';
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <?php
-                                    $status = mysqli_fetch_assoc(read('id_peminjaman', 'pengembalian', ''));
-                                    $s = $status['id_peminjaman'];
+                                    // echo $status['id_peminjaman'];
+                                    // echo $data['id_peminjaman'];
+                                    $s = $data['peminjaman_id'];
                                     $d = $data['id_peminjaman'];
                                     if($s == $d){
                                         echo "<div class='btn btn-sm btn-danger'>Sudah Kembali</div>";
                                     }else{
                                         echo "<div class='btn btn-sm btn-primary'>Dipinjam</div>";
                                     }
-
                                     ?>
                                 </div>
                             </td>
