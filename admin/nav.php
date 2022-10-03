@@ -73,6 +73,7 @@ session_start();
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="kelas.php"><i class="fa-solid fa-users-rectangle"></i> &nbsp;Kelas</a>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="peminjaman.php"><i class="fa-solid fa-book-bookmark"></i> &nbsp;Peminjaman</a>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="pengembalian.php"><i class="fa-solid fa-person-chalkboard"></i> &nbsp;Pengembalian</a>
+                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="history_peminjaman.php"><i class="fa-solid fa-clock-rotate-left"></i> &nbsp;History Peminjaman</a>
             </div>
         </div>
 
