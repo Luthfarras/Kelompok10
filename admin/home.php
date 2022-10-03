@@ -1,3 +1,5 @@
+// luthfarras menambah search, logout, login, pengembalian, crud buku, crud siswa
+// azzam menambah detail pinjam, peminjaman, crud kelas, crud petugas, history siswa, list buku siswa
 <?php
 include '../config.php';
 ?>

@@ -1,3 +1,4 @@
+//azzam menambah hal siswa
 <?php
 include '../config.php';
 ?>

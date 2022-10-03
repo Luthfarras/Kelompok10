@@ -29,8 +29,8 @@ while($dt = mysqli_fetch_array($ambil)){
                       <input type="number" class="form-control" name="id_buku" value="<?=$dt['id_buku']?>" disabled>
                     </div>
                     <div class="mb-2">
-                        <input type="text" class="form-control" name="judul" value="<?=$dt['judul']?>">
-                        <label>Judul</label>
+                       <label class="form-label">Judul</label>
+                        <input type="text" class="form-control" name="judul" value="<?=$dt['judul']?>" disabled>
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">NIS</label>
@@ -46,28 +46,28 @@ while($dt = mysqli_fetch_array($ambil)){
                         </select>
                     </div> -->
                     <div class="mb-2">
+                       <label class="form-label">Siswa</label>
                         <select class="form-control text-start" name="siswa" id="peminjam">
                             <option disabled selected>Pilih Peminjam</option>
                             <?php
-                            $result = read('nama', 'siswa', '');
+                            $result = read('*', 'siswa', '');
                             while ($siswa = mysqli_fetch_assoc($result)) {
                             ?>
-                            <option class="form-control text-dark" value="<?php echo $siswa['nama']?>"><?= $siswa['nama'] ?></option>
+                            <option class="form-control text-dark" value="<?php echo $siswa['nis']?>"><?= $siswa['nama'] ?></option>
                             <?php } ?>
                         </select>
-                        <label>Siswa</label>
                     </div>
-                    <div class="">
+                    <div class="mb-3">
+                      <label class="form-label">Petugas</label>
                       <input type="text" class="form-control" name="petugas" value="<?=$_SESSION['nama']?>" disabled>
-                      <label>Petugas</label>
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Tanggal Pinjam</label>
                         <input type="date" class="form-control" name="tgl_p">
-                        <label>Tanggal Pinjam</label>
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Kuantitas</label>
                         <input type="text" class="form-control" name="kuantitas" placeholder="kuantitas">
-                        <label>Kuantitas</label>
                     </div>
                     <div class="d-flex justify-content-end">
                         <input class="btn btn-success" type="submit" name="pinjam" value="Pinjam">
@@ -87,6 +87,7 @@ if (isset($_POST['pinjam'])) {
   $tgl_p = $_POST['tgl_p'];
   $tgl_k = date('Y-m-d', strtotime('+7 days', strtotime($tgl_p)));
   $total = $_POST['kuantitas'];
+  $status = "dipinjam";
 
     // $pinjam = $_POST['tgl'];
     // $kembali = $_POST['kembali'];
@@ -95,9 +96,9 @@ if (isset($_POST['pinjam'])) {
     // $petugas = $_SESSION['nip'];
 
 
-    $id_peminjam = read('nis', 'siswa', "WHERE nama='$peminjam'");
-    $result= mysqli_fetch_assoc($id_peminjam);
-    $id_sis = $result['nis'];
+    // $id_peminjam = read('nis', 'siswa', "WHERE nama='$peminjam'");
+    // $result= mysqli_fetch_assoc($id_peminjam);
+    // $id_sis = $result['nis'];
 
     // $id_buku = read('id_buku', 'buku', "WHERE judul='$buku'");
     // $ambil= mysqli_fetch_assoc($id_buku);
@@ -110,13 +111,13 @@ if (isset($_POST['pinjam'])) {
     if ($stok < $total) {
       echo "<script>alert('Stok tidak cukup!');</script>";
     }else {
-      $tambahpinjam = cread("peminjaman", "('', '$id_sis', '$nip', '$tgl_p', '$tgl_k')");
-      $cetak = mysqli_fetch_assoc(read('*', 'peminjaman', "WHERE id_siswa='$id_sis'" ));
-
+      $tambahpinjam = cread("peminjaman", "('', '$peminjam', '$nip', '$tgl_p', '$tgl_k', '$status')");
+      $last_id = mysqli_insert_id($conn);
+      $cetak = mysqli_fetch_assoc(read('*', 'peminjaman', "WHERE id_siswa='$peminjam'" ));
       if($cetak){
             $que = mysqli_query($conn, "UPDATE buku SET stok='$sisa' WHERE id_buku='$id'");
           $_SESSION['id_buku'] = $id;
-          $_SESSION['id_peminjaman'] = $cetak['id_peminjaman'];
+          $_SESSION['id_peminjaman'] = $last_id;
           $_SESSION['peminjam'] = $cetak['id_siswa'];
           $_SESSION['kuantitas'] = $_POST['kuantitas'];
           echo "<script> window.location.href = 'dtp.php' </script>";

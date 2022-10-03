@@ -30,7 +30,7 @@ include '../config.php';
                    <option disabled selected>Pilih ID Peminjaman</option>
 
                     <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM peminjaman");
+                    $sql = mysqli_query($conn, "SELECT * FROM peminjaman WHERE status = 'dipinjam'");
                     while ($data = mysqli_fetch_array($sql)) {
                      ?>
                      <option value="<?= $data['id_peminjaman']?>"><?= $data['id_peminjaman']?></option>
@@ -68,30 +68,46 @@ if (isset($_POST['submit'])) {
   $tgl_kembali = $_POST['tgl_kembali'];
   $ada = $_POST['ada'];
   $hilang = $_POST['hilang'];
+
   $q1 = mysqli_query($conn, "SELECT * FROM peminjaman WHERE id_peminjaman='$id_pinjam'");
   $r = mysqli_fetch_assoc($q1);
   $tgl_asli = $r['tanggal_pengembalian'];
-  $diff = abs(strtotime($tgl_asli) - strtotime($tgl_kembali));
-  $years = floor($diff / (365*60*60*24));
-  $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-  $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
-  // $terlambat = date_diff(DateTimeInterface($tgl_asli), DateTimeInterface($tgl_kembali));
-  // $hari = $terlambat->format("%a");
-  $denda = $days * 1000;
+  $diff = date_diff(date_create($tgl_asli), date_create($tgl_kembali));
+  $hari = $diff->format('%a');
+  $denda = $hari * 1000;
+  $status = "dikembalikan";
 
   $tambahkembali = cread("pengembalian", "('', '$id_pinjam', '$tgl_kembali', '$denda')");
   if ($tambahkembali) {
-    // $last_id = mysqli_insert_id($conn);
-    // $q2 = cread("detail_pengembalian", "('', '$last_id', '$ada', '$hilang')");
-    // if ($q2) {
-    //   echo "<script>alert('Berhasil mengembalikan buku.');</script>";
-    //   echo "<script> window.location.href = 'pengembalian.php' </script>";
-    // }
-    echo "<script>alert('Berhasil mengembalikan buku.');</script>";
-    echo "<script> window.location.href = 'pengembalian.php' </script>";
-
+      $last_id = mysqli_insert_id($conn);
+      $q2 = cread("detail_pengembalian", "('', '$last_id', '$ada', '$hilang')");
+      if ($q2) {
+        $q3 = mysqli_query($conn, "UPDATE peminjaman SET status='$status' WHERE id_peminjaman='$id_pinjam'");
+        echo "<script>alert('Berhasil mengembalikan buku.');</script>";
+        echo "<script> window.location.href = 'pengembalian.php' </script>";
+      }
   }
+  // $diff = abs(strtotime($tgl_asli) - strtotime($tgl_kembali));
+  // $years = floor($diff / (365*60*60*24));
+  // $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+  // $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+  // $terlambat = date_diff(DateTimeInterface($tgl_asli), DateTimeInterface($tgl_kembali));
+  // $hari = $terlambat->format("%a");
+  // $denda = $days * 1000;
+  //
+  // $tambahkembali = cread("pengembalian", "('', '$id_pinjam', '$tgl_kembali', '$denda')");
+  // if ($tambahkembali) {
+  //   // $last_id = mysqli_insert_id($conn);
+  //   // $q2 = cread("detail_pengembalian", "('', '$last_id', '$ada', '$hilang')");
+  //   // if ($q2) {
+  //   //   echo "<script>alert('Berhasil mengembalikan buku.');</script>";
+  //   //   echo "<script> window.location.href = 'pengembalian.php' </script>";
+  //   // }
+  //   echo "<script>alert('Berhasil mengembalikan buku.');</script>";
+  //   echo "<script> window.location.href = 'pengembalian.php' </script>";
+  //
+  // }
 
 }
  ?>

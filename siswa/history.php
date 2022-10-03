@@ -1,6 +1,9 @@
+//azzam menambah history
 <?php
 include '../config.php';
 session_start();
+// $id = $_SESSION['nis'];
+// echo $id;
 // Tambah buku
 ?>
 
@@ -22,46 +25,56 @@ session_start();
                     <thead class="text-center">
                         <tr>
                             <th>No</th>
+                            <th>Cover</th>
                             <th>Judul</th>
-                            <th>Tanggal Pinjam</th>
+                            <th>ID Peminjaman</th>
                             <th>Tanggal Pengembalian</th>
-                            <th>Nama</th>
-                            <th>Tanggel Kembali</th>
-                            <th>Denda</th>
-                            <th>Aksi</th>
+                            <!-- <th>Denda</th> -->
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <?php
-                            $no=0;
-                            $id = $_SESSION['nis'];
-                            // history tinggal merubah di sql history
-                            $history = read('b.judul, j.tanggal_peminjaman, j.tanggal_pengembalian, s.nama, n.tanggal_pengembalian, n.denda', 'buku b join detail_peminjaman p ON b.id_buku = p.id_buku JOIN peminjaman j ON p.id_peminjaman=j.id_peminjaman JOIN siswa s ON s.nis = j.id_siswa JOIN pengembalian n ON j.id_peminjaman = n.id_peminjaman', "WHERE j.id_siswa='$id'");
-                                    while($data = mysqli_fetch_array($history)){
+                                <?php
+                                    $no=0;
+                                    $id = $_SESSION['nis'];
+                                    // history tinggal merubah di sql history
+                                    $history = mysqli_query($conn, "SELECT * From buku b join detail_peminjaman p ON b.id_buku = p.id_buku JOIN peminjaman j ON p.id_peminjaman=j.id_peminjaman WHERE j.id_siswa = '$id'");
+                                    while($data = mysqli_fetch_assoc($history)){
+                                    mysqli_query($conn, "SELECT * From buku b join detail_peminjaman p ON b.id_buku = p.id_buku JOIN peminjaman j ON p.id_peminjaman=j.id_peminjaman WHERE j.id_siswa = '$id'") or die(mysqli_error());
                                     $no++;
                         ?>
                         <tr>
-                            <th class="text-center" scope="row"><?=$no?></th>
+                            <td class="text-center" scope="row"><?=$no?></td>
+                            <td>
+                              <img class="img-thumbnail" src="../assets/img/<?=$data['cover']?>" style="width: 50px;">
+                            </td>
                             <td><?=$data['judul']?></td>
-                            <td><?=$data['tanggal_peminjaman']?></td>
+                            <td><?=$data['id_peminjaman']?></td>
                             <td><?=$data['tanggal_pengembalian']?></td>
-                            <td><?=$data['nama']?></td>
-                            <td><?=$data['tanggal_kembali']?></td>
-                            <td><?=$data['denda']?></td>
-                            <td class="text text-center">
-                                <!-- aksi -->
-                                <button class="btn btn-polos p-1">
-                                    <a class="text-success" href="">
-                                        <i class="fa-solid fa-right-to-bracket"></i>
-                                    </a>
-                                </button>
+                            <td>
+                                <?php
+                                    $q1 = mysqli_query($conn, "SELECT * FROM peminjaman");
+
+                                    $date = date('Y-m-d');
+                                    // echo $date;
+                                    $tgl = mysqli_fetch_assoc($q1);
+                                    $tgl_k = strtotime($tgl['tanggal_pengembalian']);
+                                    $tgl_s = strtotime($date);
+                                    // belum bisa jalan statusnya
+                                    if ($tgl_s > $tgl_k) {
+                                        echo "dipinjam";
+                                    } else{
+                                        echo "telat";
+                                    }
+                                ?>
                             </td>
                         </tr>
                         <?php
-                            }
-                        ?>
-                    </tbody>
-                </table>
+
+                                    }
+                                ?>
+                            </tbody>
+                          </table>
             </div>
         </div>
         <!-- Lanjutan dari nave -->
