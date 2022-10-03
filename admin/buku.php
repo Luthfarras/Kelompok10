@@ -12,7 +12,7 @@ if (isset($_POST['tambah'])) {
   $upload = move_uploaded_file($tmp_name, "../assets/img/" . $file);
   $sinopsis = $_POST['sinopsis'];
   $stok = $_POST['stok'];
-  
+
   $tambahbuku = cread("buku", "('', '$judul', '$penulis', '$penerbit', '$tahun', '$kota', '$file', '$sinopsis', '$stok')");
 
   if ($tambahbuku) {
@@ -36,6 +36,11 @@ if (isset($_POST['tambah'])) {
             <div class="container pt-4 m-auto">
                 <!-- Tambah data -->
                 <button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah +</button>
+                <form class="d-flex input-group mb-2" role="search" method="get" action="cari_buku.php">
+                    <input class="form-control" type="search" placeholder="Cari Buku" aria-label="Search" name="search">
+                    <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+
                 <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -142,7 +147,7 @@ if (isset($_POST['tambah'])) {
                                     <a class="text-primary" href="detail_buku.php?id_buku=<?= $data['id_buku']; ?>">
                                     <i class="fa-solid fa-circle-info"></i>
                                     </a>
-                                </button> | 
+                                </button> |
                                 <button class="btn btn-polos p-1">
                                     <a class="text-warning" href="edit_buku.php?id_buku=<?= $data['id_buku']; ?>">
                                         <i class="fa-solid fa-pen-to-square"></i>

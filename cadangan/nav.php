@@ -1,11 +1,6 @@
 <?php
 include_once '../config.php';
-session_start();
-if (!$_SESSION['nip']) {
-    header('location:../index1.php');
-    exit;
-  }
-
+// session_start();
 ?>
 
 
@@ -63,16 +58,11 @@ if (!$_SESSION['nip']) {
                 </div>
             </div>
             <div class="list-group pe-0 list-group-flush" style="height: 100vh;" >
-                <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="buku.php"><i class="fa-solid fa-book"></i> &nbsp;Buku</a>
-                <?php
-                if ($_SESSION['level'] == "admin") {
-                ?>
-                <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="petugas.php"><i class="fa-solid fa-user"></i> &nbsp;Petugas</a>
-                <?php } ?>
-                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="siswa.php"><i class="fa-solid fa-users"></i> &nbsp;Siswa</a>
-                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="kelas.php"><i class="fa-solid fa-users-rectangle"></i> &nbsp;Kelas</a>
+                <a  class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="history.php"><i class="fa-solid fa-clock-rotate-left"></i></i> &nbsp;History Peminjaman</a>
+                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="list.php"><i class="fa-solid fa-list"></i> &nbsp;List Buku</a>
+                <!-- <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="kelas.php"><i class="fa-solid fa-users-rectangle"></i> &nbsp;Kelas</a>
                 <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="peminjaman.php"><i class="fa-solid fa-book-bookmark"></i> &nbsp;Peminjaman</a>
-                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="pengembalian.php"><i class="fa-solid fa-person-chalkboard"></i> &nbsp;Pengembalian</a>
+                <a class="list-group-item text-start kun btn-polos font pt-3 pb-2" href="pengembalian.php"><i class="fa-solid fa-person-chalkboard"></i> &nbsp;Pengembalian</a> -->
             </div>
         </div>
 
@@ -145,13 +135,13 @@ if (!$_SESSION['nip']) {
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-person-chalkboard text-warning"></i> Pengembalian</a></li>
                             </ul>
                         </button>
-                        <!-- <button class="btn btn-light me-2" id="btn-search" onclick="search()" type="button"><small>Search&nbsp; </small><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                        <button class="btn btn-light me-2" id="btn-search" onclick="search()" type="button"><small>Search&nbsp; </small><i class="fa-solid fa-magnifying-glass"></i></button>
                         <!-- search -->
                       <li class="nav-item" id="search" style="display: none;">
-                        <!-- <form class="d-flex input-group" role="search" method="get">
+                        <form class="d-flex input-group" role="search">
                             <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form> -->
+                        </form>
                       </li>
                     </ul>
                         <!-- menu logout pada layar besar -->
@@ -218,6 +208,3 @@ if (!$_SESSION['nip']) {
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 </body>
 </html>
-<?php
-
- ?>

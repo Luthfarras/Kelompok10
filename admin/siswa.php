@@ -7,11 +7,11 @@ if (isset($_POST['tambah'])) {
     $kelamin = $_POST['kelamin'];
     $alamat = $_POST['alamat'];
     $kelas = $_POST['kelas'];
-    
+
     $id_kelas = read('id_kelas', 'kelas', "WHERE nama_kelas='$kelas'");
     $data = mysqli_fetch_assoc($id_kelas);
     $id = $data['id_kelas'];
-  
+
     $siswa = cread('siswa', "('$nisn', '$nama', '$kelamin', '$alamat', '$id')");
     if ($siswa) {
       header("Location:siswa.php");
@@ -33,6 +33,10 @@ if (isset($_POST['tambah'])) {
             <div class="container pt-4 m-auto">
                 <!-- Tambah data -->
                 <button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah +</button>
+                <form class="d-flex input-group mb-2" role="search" method="get" action="cari_siswa.php">
+                    <input class="form-control" type="search" placeholder="Cari Siswa" aria-label="Search" name="search">
+                    <button class="btn btn-dark" type="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
                 <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">

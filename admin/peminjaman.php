@@ -1,17 +1,5 @@
 <?php
 include '../config.php';
-if (isset($_POST['submit'])) {
-    $nis = $_POST['nis'];
-    $nip = $_SESSION['nip'];
-    $tgl_pinjam = $_POST['tgl_pinjam'];
-    $tgl_kembali = date('Y-m-d', strtotime('+7 days', strtotime($tgl_pinjam)));  
-    
-    $tambahpinjam = cread("peminjaman", "('', '$nis', '$nip', '$tgl_pinjam', '$tgl_kembali')");
-  
-    if ($tambahpinjam) {
-      header('location:peminjaman.php');
-    }
-}  
 ?>
 
 <!DOCTYPE html>

@@ -17,7 +17,7 @@ if (isset($_POST['pinjam'])) {
     $id_buku = read('id_buku', 'buku', "WHERE judul='$buku'");
     $ambil= mysqli_fetch_assoc($id_buku);
     $id_buk = $ambil['id_buku'];
-    
+
     $peminjaman = cread("peminjaman", "('', '$id_sis', '$petugas', '$pinjam', '$kembali')");
 
     $cetak = mysqli_fetch_assoc(read('*', 'peminjaman', "WHERE id_siswa='$id_sis'" ));
@@ -72,7 +72,8 @@ if (isset($_POST['pinjam'])) {
                             <td><?=$data['judul']?></td>
                             <td class="text text-center">
                                 <!-- Tombol pinjam -->
-                                <button class="btn btn-primary ps-3 pe-3 btn-bulat" data-bs-toggle="modal" data-bs-target="#pinjam">
+                                <a href="proses_pinjam.php?id_buku=<?= $data['id_buku']; ?>" class="btn btn-sm btn-outline-primary" style="border-radius:50px">Pinjam</a>
+                                <!-- <button class="btn btn-primary ps-3 pe-3 btn-bulat" data-bs-toggle="modal" data-bs-target="#pinjam">
                                     Pinjam
                                 </button>
                                 <div class="modal fade text-start" id="pinjam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -129,7 +130,7 @@ if (isset($_POST['pinjam'])) {
                                             </div>
                                             </form>
                                         </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </td>
